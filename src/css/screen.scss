@@ -1,0 +1,604 @@
+/**
+ *
+ * 	Variables
+ *
+ */
+$fonts-bodycopy: 'PT Serif', 'Georgia', 'Times New Roman', serif;
+$fonts-caption: 'Open Sans', 'Myriad Pro', 'Lucida Grande', 'Verdana', sans-serif;
+
+$color-font-main: #333;
+$color-link: #52bf9f;
+
+$gap-huge: 7.25rem;
+$gap-big: 4.25rem;
+$gap-medium: 3.25rem;
+$gap-small: 2.25rem;
+
+$kattunge-min-width: 460px;
+$kattunge-width: 55%;
+$kattunge-max-width: 960px;
+
+$kattunge-tablet-breakpoint: 768px;
+$kattunge-mobile-breakpoint: $kattunge-min-width + 100;
+
+$transition-smoothy: cubic-bezier(0.3, .55, 0.1, 0.9);
+
+/**
+ *
+ * 	Imports - fonts
+ *
+ */
+/*@import url('//oscarekholm.se/fonts/m+1c/m+1c.css');*/
+
+/**
+ *
+ * 	Imports - SCSS
+ *
+ */
+@import "compass";
+@import "normalize";
+@import "kattunge";
+
+/**
+ *
+ * 	Configuration of Kattkorg with kattungar
+ *
+ */
+@include kattkorg($kattunge-min-width, $kattunge-width, $kattunge-max-width);
+
+.kattmamma {
+	margin-bottom: 0;
+}
+
+/**
+ *
+ * 	Some kind of mini reset
+ *
+ */
+* {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+/**
+ * 	Super small (maybe not that small by the way) reset for anchors and buttons follow.
+ */
+a,
+a:link,
+a:hover,
+a:visited,
+button,
+button:hover,
+button:focus {
+	border: none;
+	background: transparent;
+	outline: none;
+	text-decoration: none;
+	cursor: pointer;
+	outline: none;
+}
+
+/**
+ *
+ * 	Basics - styling of "basic" elements and utility classes
+ *
+ */
+body {
+	font: 18.5px/1.45 $fonts-bodycopy;
+	font: 1.85rem/1.45 $fonts-bodycopy;
+	background: #fcfcfc;
+	color: $color-font-main;
+}
+
+a,
+a:link {
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	color: $color-link;
+}
+
+a:link {
+	@include transition(border 0.45s $transition-smoothy, box-shadow 0.75s $transition-smoothy);
+}
+
+a:link {
+	border-bottom: 1px solid transparentize($color-link, 0.75);
+}
+
+a:link:hover,
+a:link:focus,
+a.active {
+	border-bottom: 2px solid transparentize($color-link, 0.35);
+}
+
+a:link:focus {
+	box-shadow: 0 0 25px transparentize($color-link, 0.25);
+}
+
+.italic {
+	font-style: italic;
+}
+
+span.strike-through {
+	position: relative;
+	display: inline-block;
+	opacity: 0.25;
+}
+
+span.strike-through:before {
+	content: '/';
+	position: absolute;
+	color: red;
+	top: 0; bottom: 0; left: 0; right: 0;
+}
+
+h1, h2, h3, h4 {
+	font-family: $fonts-caption;
+	margin: 0;
+}
+
+h1 {
+	font-size: 3.15em;
+}
+
+h2 {
+	font-size: 2.105em;
+}
+
+h3 {
+	font-size: 1.75em;
+}
+
+p {
+	margin: 0 0 1.25em 0;
+}
+
+.centered-copy {
+	max-width: 40em;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+
+.pull-left {
+	float: left;
+}
+
+.pull-right {
+	float: right;
+}
+
+.section-header {
+	margin-bottom: $gap-big;
+	text-align: center;
+}
+
+
+.neaty {
+	border-radius: 3px;
+	border: 2px solid $color-font-main; 
+
+	@include transition(color 0.25s $transition-smoothy, background 0.25s $transition-smoothy, border 0.25s $transition-smoothy, box-shadow 0.55s $transition-smoothy);
+
+	&:hover,
+	&:focus {
+		background: $color-link;
+		border: 2px solid $color-link;
+		color: white;
+	}
+
+	&:focus {
+		border: 2px solid darken($color-link, 20%);
+		box-shadow: 0 0 25px transparentize($color-link, 0.25);
+	}
+
+	&:active {
+		background: lighten($color-link, 10%);
+		border: 2px solid lighten($color-link, 10%);
+	}
+}
+
+button.neaty {
+	padding: 0.75em;
+}
+
+/**
+ *
+ * 	Structural elements
+ *
+ */
+body > section .kattmamma {
+	margin-bottom: 0;
+}
+
+/* Will wrap our sections tightly together */
+.page-wrap {
+	width: 100%;
+	min-height: 100%;
+}
+
+.page-wrap > section {
+	overflow: hidden;
+	width: 100%;
+}
+
+/* The site's footer, separate from the page-wrap for futureproofing */
+.page-foot {
+	position: relative;
+	background: #212121;
+	color: #fafafa;
+	padding: $gap-big;
+
+	.kattunge:last-child {
+		text-align: right;
+	}
+}
+
+/* Media query specific for the page foot */
+@media (max-width: $kattunge-tablet-breakpoint) {
+	.page-foot .kattmamma .kattunge {
+		text-align: center;
+		margin-bottom: 1em;
+		padding-bottom: 1em;
+	}
+}
+
+/* Vertically centered component */
+.vertically-centered {
+	display: table;
+	width: 100%;
+	height: 100%;
+}
+
+.vertically-centered > div {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+/* Horizontally centered component */
+.horizontally-centered,
+.kattunge.horizontally-centered {
+	margin: auto;
+	float: none;
+}
+
+/**
+ *
+ * 	Styles for widely used, specific elements
+ *
+ */
+.feature-background {
+	background-color: white;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 100%;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+.oe-logo,
+a.oe-logo:link,
+a.oe-logo:hover {
+	display: block;
+
+	width: 80px;
+	height: 92px;
+
+	text-indent: -9999em;
+	
+	border: none;
+
+	background: url('/img/oe-logo.svg') no-repeat;
+	background-size: 100%;
+}
+
+/**
+ *
+ * 	Section 0: Hero
+ *
+ */
+#presentational-hero {
+	background-image: url('/img/sections/header/background.jpg');
+	height: 100%;
+	min-height: 100rem;
+
+	@include transition(height 0.45s $transition-smoothy);
+}
+
+#presentational-hero .kattunge {
+	@include transition(transform .5s $transition-smoothy);
+}
+#presentational-hero .kattunge.window-not-loaded {
+	@include transform(translate(0, -5em));
+}
+
+#presentational-hero .oe-logo {
+	position: absolute;
+
+	top: 0; left: 0; right: 0;
+	margin: $gap-huge auto 0;
+}
+
+#presentational-hero > .kattkorg {
+	height: 100%;
+	overflow-y: hidden;
+}
+
+#presentational-hero h1 {
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 9em;
+	line-height: 1;
+	color: white;
+}
+
+#presentational-hero .on-top,
+#presentational-hero .at-bottom {
+	position: relative;
+	z-index: 1;
+}
+
+#presentational-hero .on-top {
+	z-index: 5;
+}
+
+#presentational-hero .kattmamma {
+	margin-bottom: 0;
+}
+
+/**
+ * 	Media queries for the Hero section
+ */
+@media (max-width: 1680px) {
+	#presentational-hero h1 {
+		font-size: 5.8em;
+	}
+
+	#presentational-hero {
+		height: 85%;
+		min-height: 100rem;
+	}
+}
+
+@media (min-width: 768px) {
+	#presentational-hero > .kattkorg {
+		width: 80%;
+		max-width: 1280px;
+	}
+}
+
+@media (max-width: 768px) {
+	#presentational-hero {
+		min-height: 75rem;
+	}
+	#presentational-hero h1 {
+		font-size: 4em;
+	}
+}
+
+
+/**
+ *
+ * 	Section 1: Introduction
+ *
+ */
+.introduction {
+	background: #fafafa;
+	text-align: center;
+
+	.kattunge {
+		padding: $gap-huge 0;
+	}
+}
+
+/**
+ *
+ * 	Section 2: World Skills
+ *
+ */
+.world-skills {
+	position: relative;
+	background-image: url('/img/sections/wsc/Leipziger-Architektur.jpg');
+	height: 75rem;
+	box-shadow: inset 0 0 50px black, inset 0 0 50px black;
+
+	color: #eee;
+	text-align: center;
+}
+
+/**
+ *
+ * 	Section 3: Projects
+ *
+ */
+.work {
+	padding: $gap-huge 0; 
+
+	p {
+		margin: 0;
+	}
+}
+
+.projects {
+	width: 75%;
+	
+	.kattmamma {
+		margin-bottom: 2%;
+	}
+
+	.kattunge {
+		background: #aaa;
+	}
+
+	a {
+		color: white;
+	}
+
+	article {
+		overflow: hidden;
+		max-height: 100%;
+	}
+
+	figure {
+		position: relative;
+		height: 100%;
+	}
+
+	figure:after {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 2;
+		width: 100%;
+		height: 100%;
+		box-shadow: inset 0 0 35px rgba(50, 50, 50, 0.1);
+		content: '';
+	}
+
+	article img {
+		position: relative;
+		z-index: 1;
+		width: 110%;
+		margin: -5% 0 0 -5%;
+
+		@include transform(scale(1.1, 1.1));
+
+		@include transition(transform 0.5s $transition-smoothy);
+		-webkit-transition: -webkit-transform 0.5s $transition-smoothy, -webkit-filter 1s $transition-smoothy;
+	}
+
+	article .image-replacement {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		text-align: center;
+		line-height: 300px;
+	}
+
+	article figcaption {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 5;
+		width: 100%;
+		height: 100%;
+
+		opacity: 0;
+		background: rgba(0, 0, 0, 0.8);
+
+		@include transition(transform 0.5s, opacity 0.5s $transition-smoothy);
+	}
+
+	article:hover,
+	article > a:focus,
+	article > a.active {
+		img {
+			box-shadow: inset 0 0 15px #f08;
+			@include transform(scale(1.0, 1.0));
+			@include filter(grayscale(100%));
+		}
+
+		figcaption {
+			opacity: 1;	
+		}
+
+		.project-info {
+			opacity: 1;
+			@include translate3d(0, 0, 0);
+		}
+	}
+
+	.project-info {
+		display: table-cell;
+		vertical-align: middle;
+
+		text-align: center;
+
+		opacity: 0;
+
+		/* Use a translate3d to force hardware acceleration in webkit */
+		@include translate3d(0, -3em, 0);
+		@include transition(transform 0.5s, opacity 0.5s $transition-smoothy);
+	}
+
+	.project-info p {
+		margin: 1rem 0 0;
+		color: #bbb;
+	}
+
+	.project-info .involvement {
+		font-size: 0.75em;
+		color: #999;
+	}
+
+	.project-info .status-year {
+		text-transform: uppercase;
+	}
+}
+
+.work {
+	.content {
+		margin-bottom: $gap-medium;
+	}
+}
+
+/**
+ *
+ * 	Section 4: Who was he really?
+ *
+ */
+.who {
+	position: relative;
+	padding: $gap-huge 0; 
+	background: #f3f3f3;
+	text-align: center;
+
+	.kattmamma:first-child {
+		margin-bottom: $gap-small;
+	}
+
+	.picture-row {
+		display: table;
+		background: url('/img/portrait.png') no-repeat;
+		height: 155px;
+		margin-bottom: 2rem;
+	}
+
+	.picture-row > div {
+		display: table-cell;
+		vertical-align: middle;
+	}
+
+	.picture-row p {
+		padding-left: 170px;
+	}
+}
+
+/**
+ * 	Media query for Section 4: Who
+ */
+@media (max-width: $kattunge-mobile-breakpoint) {
+	.who {
+		.picture-row {
+			background-position: center bottom;
+		}
+		.picture-row p {
+			padding: 0 0 17.5rem 0;
+		}
+	}
+}

@@ -1,0 +1,68 @@
+
+/**
+ *
+ *	Kattunge
+ *	Ett supersimpelt, responsivt, rutnätsbaserat CSS-ramverk, med kattiga klassnamn
+ *	(A super simple, responsive, grid based CSS framework, with fancy class names in Swedish)
+ *	
+ *
+ *	See more: http://oscarekholm.se/kattunge
+ *
+ *	License: MIT
+ *
+ */
+
+@mixin kattkorg($min-width: 640px, $width: 55%, $max-width: 740px) {
+	.kattkorg {
+		width: $width;
+		min-width: $min-width;
+		max-width: $max-width;
+	}
+
+	@media (max-width: $min-width + 100) {
+		.kattkorg { width: 88.88%; min-width: 10em; padding: 1em; }
+	}
+
+	@media (min-width: 768px) {
+		.kattunge.ett 	{ width: 6.5%; }
+		.kattunge.två 	{ width: 15.0%; }
+		.kattunge.tre 	{ width: 23.5%; }
+		.kattunge.fyra 	{ width: 32.0%; }
+		.kattunge.fem 	{ width: 40.5%; }
+		.kattunge.sex 	{ width: 49.0%; }
+		.kattunge.sju 	{ width: 57.5%; }
+		.kattunge.åtta 	{ width: 66.0%; }
+		.kattunge.nio 	{ width: 74.5%; }
+		.kattunge.tio 	{ width: 83.0%; }
+		.kattunge.elva 	{ width: 91.5%; }
+		.kattunge.tolv 	{ width: 100%; }
+
+		.kattunge		{ margin-left: 2%; margin-bottom: 0; }
+	}
+}
+
+.kattkorg { margin: auto; }
+
+.kattmamma:before,
+.kattmamma:after { content: ' '; display: table; }
+.kattmamma:after { clear: both; }
+
+.kattunge { display: block; float: left; width: 100%; margin-bottom: 1em; }
+
+.kattunge > img {
+	max-width: 100%;
+}
+
+.kattunge:first-child { margin-left: 0; }
+.kattmamma { margin-bottom: 1em; }
+
+
+/**
+ *
+ * 	Ytterligare klasser
+ * 	Additional classes
+ *
+ */
+.fullhöjd {
+	height: 100%;
+}
