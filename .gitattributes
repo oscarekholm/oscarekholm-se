@@ -1,0 +1,12 @@
+# Set default behavior, just in case an user doesn't have core.autocrlf set
+* text=auto
+
+# Files I feel should explicitly be sent as something else than binary
+*.svg text
+
+# Truly binary files that should not be modified
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.psd binary
